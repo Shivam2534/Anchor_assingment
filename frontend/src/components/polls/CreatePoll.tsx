@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { Backend_URL } from "../../contant";
 
 interface Option {
   text: string;
@@ -37,7 +38,7 @@ const CreatePoll: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/polls", {
+      const response = await axios.post(`${Backend_URL}/api/polls`, {
         title,
         description,
         options: options.map((option) => option.text),
