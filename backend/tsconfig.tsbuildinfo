@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/config/database.ts","./src/controllers/pollcontroller.ts","./src/controllers/usercontroller.ts","./src/middleware/auth.ts","./src/models/poll.ts","./src/models/user.ts","./src/models/vote.ts","./src/routes/pollroutes.ts","./src/routes/userroutes.ts","./src/types/express/index.d.ts"],"version":"5.8.2"}
