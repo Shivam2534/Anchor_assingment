@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 interface Option {
   text: string;
@@ -9,14 +9,14 @@ interface Option {
 
 const CreatePoll: React.FC = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [options, setOptions] = useState<Option[]>([{ text: '' }]);
-  const [endDate, setEndDate] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [options, setOptions] = useState<Option[]>([{ text: "" }]);
+  const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
 
   const addOption = () => {
-    setOptions([...options, { text: '' }]);
+    setOptions([...options, { text: "" }]);
   };
 
   const removeOption = (index: number) => {
@@ -37,17 +37,17 @@ const CreatePoll: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/polls', {
+      const response = await axios.post("http://localhost:5000/api/polls", {
         title,
         description,
-        options: options.map(option => option.text),
-        endDate
+        options: options.map((option) => option.text),
+        endDate,
       });
 
-      toast.success('Poll created successfully!');
+      toast.success("Poll created successfully!");
       navigate(`/polls/${response.data._id}`);
     } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Failed to create poll');
+      toast.error(error.response?.data?.message || "Failed to create poll");
     } finally {
       setLoading(false);
     }
@@ -58,11 +58,16 @@ const CreatePoll: React.FC = () => {
       <div className="max-w-2xl mx-auto">
         <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
           <div className="p-6">
-            <h1 className="text-2xl font-bold text-white mb-6">Create New Poll</h1>
-            
+            <h1 className="text-2xl font-bold text-white mb-6">
+              Create New Poll
+            </h1>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="title"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Poll Title
                 </label>
                 <input
@@ -77,7 +82,10 @@ const CreatePoll: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Description
                 </label>
                 <textarea
@@ -112,9 +120,20 @@ const CreatePoll: React.FC = () => {
                           onClick={() => removeOption(index)}
                           className="p-2 text-red-400 hover:text-red-300 focus:outline-none"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
                           </svg>
+                          .
                         </button>
                       )}
                     </div>
@@ -125,15 +144,28 @@ const CreatePoll: React.FC = () => {
                   onClick={addOption}
                   className="mt-3 text-sm text-blue-400 hover:text-blue-300 focus:outline-none flex items-center"
                 >
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
                   </svg>
                   Add Option
                 </button>
               </div>
 
               <div>
-                <label htmlFor="endDate" className="block text-sm font-medium text-gray-300 mb-1">
+                <label
+                  htmlFor="endDate"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   End Date
                 </label>
                 <input
@@ -149,7 +181,7 @@ const CreatePoll: React.FC = () => {
               <div className="flex justify-end space-x-4">
                 <button
                   type="button"
-                  onClick={() => navigate('/polls')}
+                  onClick={() => navigate("/polls")}
                   className="px-4 py-2 text-gray-300 hover:text-white focus:outline-none"
                 >
                   Cancel
@@ -159,7 +191,7 @@ const CreatePoll: React.FC = () => {
                   disabled={loading}
                   className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {loading ? 'Creating...' : 'Create Poll'}
+                  {loading ? "Creating..." : "Create Poll"}
                 </button>
               </div>
             </form>
@@ -170,4 +202,4 @@ const CreatePoll: React.FC = () => {
   );
 };
 
-export default CreatePoll; 
+export default CreatePoll;
