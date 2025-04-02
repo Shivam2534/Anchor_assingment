@@ -21,12 +21,12 @@ jobs:
       - name: 🚀 Deploy via SSH
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.SSH_HOST }} << 'EOF'
-          cd ~/Ticket_booking_system/workwise_backend
+          cd ~/Anchor_assingment/backend
           git pull origin main
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
           
           npm install
-          pm2 restart workwise_server
+          pm2 restart Anchor_assingment
           EOF
