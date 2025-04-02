@@ -28,5 +28,5 @@ jobs:
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
           
           npm install
-          pm2 restart Anchor_assingment
+          pm2 restart anchore_server
           EOF
